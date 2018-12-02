@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -40,6 +41,7 @@ public class UserController {
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public User createPet(@Valid @RequestBody User user) {
         user.setId(ObjectId.get());
+        user.setCreation(new Date());
         repository.save(user);
         return user;
     }
